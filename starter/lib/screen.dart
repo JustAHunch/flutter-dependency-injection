@@ -15,8 +15,6 @@ class CounterScreen extends StatefulWidget {
 }
 
 class _CounterScreenState extends State<CounterScreen> {
-  int counter = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +57,7 @@ class _CounterScreenState extends State<CounterScreen> {
 
   void execute() {
     setState(() {
-      // 3. get으로 주입받은 모델을 불러와서 사용
+      // 4. get으로 주입받은 모델을 불러와서 사용
       switch (locator.get<CounterModeModel>().counterMode) {
         case CounterMode.plus:
           locator.get<CounterModel>().increment();
