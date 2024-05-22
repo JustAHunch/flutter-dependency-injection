@@ -1,3 +1,5 @@
+import 'package:injectable/injectable.dart';
+
 enum CounterMode {
   plus,
   minus;
@@ -12,7 +14,7 @@ enum CounterMode {
   }
 }
 
-// 1. 의존성 등록을 위해 카운터와 관련된 모든 프로퍼티를 각각의 모델로 변환
+@singleton
 class CounterModel {
   int _counter = 0;
 
@@ -27,6 +29,7 @@ class CounterModel {
   }
 }
 
+@singleton
 class CounterModeModel {
   CounterMode _counterMode = CounterMode.plus;
 

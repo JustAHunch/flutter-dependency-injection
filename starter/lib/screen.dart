@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it_starter/main.dart';
 
+import 'dependency.dart';
 import 'model.dart';
 
-// TODO: GetIt 을 사용하여 카운터 앱이 동작하도록 변경하세요.
+// TODO: Injectable 을 사용하여 카운터 앱이 동작하도록 변경하세요.
 // - 단, Screen 내에 변수는 없어야 한다. (ex. counter)
 
 class CounterScreen extends StatefulWidget {
@@ -20,7 +20,7 @@ class _CounterScreenState extends State<CounterScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('get_it'),
+        title: const Text('injectable'),
         actions: [
           IconButton(
             onPressed: onChangedMode,
