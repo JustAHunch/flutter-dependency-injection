@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'dependency.dart';
 import 'model.dart';
 
-// TODO: Injectable 을 사용하여 카운터 앱이 동작하도록 변경하세요.
+// TODO: Provider 을 사용하여 카운터 앱이 동작하도록 변경하세요.
 // - 단, Screen 내에 변수는 없어야 한다. (ex. counter)
 
 class CounterScreen extends StatefulWidget {
@@ -20,7 +20,7 @@ class _CounterScreenState extends State<CounterScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('injectable'),
+        title: const Text('provider'),
         actions: [
           IconButton(
             onPressed: onChangedMode,
@@ -36,7 +36,8 @@ class _CounterScreenState extends State<CounterScreen> {
               'You have pushed the button this many times:',
             ),
             Text(
-              locator.get<CounterModel>().counter.toString(),
+              // locator.get<CounterModel>().counter.toString(),
+              context.read<CounterModel>().counter.toString(),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
@@ -44,25 +45,25 @@ class _CounterScreenState extends State<CounterScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: execute,
-        child: Icon(locator.get<CounterModeModel>().counterMode.icon),
+        child: Icon(context.read<CounterModeModel>().counterMode.icon),
       ),
     );
   }
 
   void onChangedMode() {
     setState(() {
-      locator.get<CounterModeModel>().toggleMode();
+      context.read<CounterModeModel>().toggleMode();
     });
   }
 
   void execute() {
     setState(() {
       // 4. get으로 주입받은 모델을 불러와서 사용
-      switch (locator.get<CounterModeModel>().counterMode) {
+      switch (context.read<CounterModeModel>().counterMode) {
         case CounterMode.plus:
-          locator.get<CounterModel>().increment();
+          context.read<CounterModel>().increment();
         case CounterMode.minus:
-          locator.get<CounterModel>().decrement();
+          context.read<CounterModel>().decrement();
       }
     });
   }
